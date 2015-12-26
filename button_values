@@ -1,0 +1,110 @@
+8 channel relay w/2 modes
+mode 1: 
+8 buttons switch between  different  sequences
+
+mode 2: 
+8 buttons switch on/off the 8 channels
+
+hardware:
+8*120v sockets (ups) >
+connected to 8 channel relay > 
+connected to arduino digital pins 2-9
+
+8 analog buttons >
+connected to 8*10k resistors in series w/pull down resistor >
+connected to arduino analog pin 0  
+
+1 push button toggle switch >
+connected to arduino digital pin 10
+
+
+
+button 1 - 
+470
+
+2.20-2.24 v 
+453,454 (serial_monitor_value)
+
+436
+
+button 2: 
+2.05-2.08 v
+420,421 (serial_monitor_value)
+
+401
+
+button 3: 
+1.86-1.89 v
+383,384 (serial_monitor_value)
+
+362
+
+button 4: 
+1.66-1.69 v
+340,341 (serial_monitor_value)
+
+315
+
+button 8: 
+1.41-1.45 v
+290,291,292 (serial_monitor_value)
+
+260
+
+button 7: 
+1.12-1.15 v
+233,234 (serial_monitor_value)
+
+200
+
+
+button 6: 
+0.81-0.83 v
+166,167,168 (serial_monitor_value)
+
+128
+
+button 5: 
+0.42-0.45 v
+88,89,90 (serial_monitor_value)
+
+48
+
+//////////
+
+1024/5.00 = 204.8
+
+b0 = 453,454(serial_monitor_value)
+204.8*2.2 = 450.56
+204.8*2.24 = 458.752
+
+b1 = 420,421(serial_monitor_value)
+204.8*2.05 = 419.84
+204.8*2.08 = 425.98
+
+b2 = 383,384(serial_monitor_value)
+204.8*1.86 = 380.92
+204.8*1.98 = 405.50
+
+b3 = 340,341(serial_monitor_value)
+204.8*1.66 = 339.96
+204.8*1.69 = 346.11
+
+b4 = 88,89,90(serial_monitor_value)
+204.8*0.42 = 86.01
+204.8*0.45 = 92.16
+
+b5 = 166,167,168(serial_monitor_value)
+204.8* 0.81 = 165.88
+204.8*0.83 = 169.98
+
+b6 = 233,234(serial_monitor_value)
+204.8*1.12 = 229.76
+204.8*1.15 = 235
+
+b7 = 209,291,292(serial_monitor_value)
+204.8*1.41 = 288.76
+204.8*1.45 =  296.96
+
+
+
