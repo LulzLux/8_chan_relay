@@ -1,0 +1,63 @@
+#define TIMEOUT 250 // time in ms since last time a button was being pressed
+#define AVGREADS 55 // how many times to read the analog value to average it
+
+byte relayPins[8] = {2, 3, 4, 5, 6, 7, 8, 9};
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(115200);
+  for (byte i = 0; i < 8; i++) {
+    pinMode(relayPins[i], OUTPUT);
+  }
+}
+
+unsigned long lastPress = 0;
+
+void loop() {
+  int val = averageRead(A0);
+
+  if (val < 470) { // if a button is pressed
+    val = averageRead(A0);
+    if (val > 436) { // it's between 436 and 470!
+      buttonPressed(1);
+    } else if (val > 401) { // below 436 and above 401!
+      buttonPressed(2);
+    } else if (val > 362) {
+      buttonPressed(3);
+    } else if (val > 315) {
+      buttonPressed(4);
+    } else if (val > 260) {
+      buttonPressed(8);
+    } else if (val > 200) {
+      buttonPressed(7);
+    } else if (val > 128) {
+      buttonPressed(6);
+    } else if (val > 48) {
+      buttonPressed(5);
+    } else {
+      Serial.println("shorted wire!");
+    }
+  } // no button is being pressed
+}
+
+void buttonPressed(byte butNum) {
+  if (millis() - lastPress > TIMEOUT) {
+    Serial.print("button ");
+    Serial.println(butNum);
+    flipRelay(butNum - 1);
+  }
+  lastPress = millis();
+}
+
+void flipRelay(byte relayNum) {
+  digitalWrite(relayPins[relayNum], !digitalRead(relayPins[relayNum]));
+}
+
+int averageRead(byte pinNum) {
+  unsigned adder = 0;
+  for (int i = 0; i < AVGREADS; i++) {
+    adder += analogRead(pinNum);
+  }
+  adder /= AVGREADS; // divide adder by the number of reads
+  return adder;
+}
