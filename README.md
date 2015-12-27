@@ -9,5 +9,9 @@ hot wire on reset connects serially to com on relays |_com\_|
 5v 700ma powering arduino
 5v 1.5a powering relay (isolated rail)
 
+//
+
+channel 8 & others were unstable - probably due to arduino's 5v was connectd to 7-12v barrel input. 
+
 
 
